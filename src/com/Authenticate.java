@@ -1,6 +1,7 @@
 package com;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,21 +37,28 @@ public class Authenticate extends HttpServlet {
 		
 		theSession.setAttribute("uName", userName);
 		
-	// Redirect to the Dashboard
+	  // Redirect to the Dashboard
 		
 		response.sendRedirect("dashboard");
 		
 	}else {
+		
 		// Redirect back to the index page
-		//response.sendRedirect("index.html");
 		
-	//Type-2: Using RequestDispatcher 
 		
-		response.getWriter().println("Invalid Username or Password" + "<br> <br>");
+	    // Type:1
+		response.sendRedirect("index.html");
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
 		
-		dispatcher.include(request, response);
+		/*  //Type-2: Using RequestDispatcher
+		 * 
+		 RequestDispatcher rd =null;
+		 PrintWriter out = response.getWriter();
+		 out.println("Invalid Username or Password" + "<br> <br>");
+		 rd = request.getRequestDispatcher("index.html");
+		 rd.include(request, response);
+		 * 
+		 * */
 	}
 		
 	}
